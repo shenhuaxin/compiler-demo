@@ -1,24 +1,13 @@
-package playdb;
+package sqlparse;
 
+import sqlparse.SQLiteParser.*;
 import java.util.LinkedList;
 import java.util.List;
-
-import playdb.parser.*;
-import playdb.parser.SQLiteParser.Any_nameContext;
-import playdb.parser.SQLiteParser.Column_nameContext;
-import playdb.parser.SQLiteParser.ExprContext;
-import playdb.parser.SQLiteParser.Factored_select_stmtContext;
-import playdb.parser.SQLiteParser.Literal_valueContext;
-import playdb.parser.SQLiteParser.Result_columnContext;
-import playdb.parser.SQLiteParser.Select_coreContext;
-import playdb.parser.SQLiteParser.Sql_stmtContext;
-import playdb.parser.SQLiteParser.Table_nameContext;
-import playdb.parser.SQLiteParser.Table_or_subqueryContext;
 
 public class SQLVisitor extends SQLiteBaseVisitor<Object> {
 
     @Override
-    public Object visitSql_stmt(Sql_stmtContext ctx) {
+    public Object visitSql_stmt(SQLiteParser.Sql_stmtContext ctx) {
         Object result = null;
         if(ctx.factored_select_stmt() != null &&
             ctx.factored_select_stmt().select_core().size() > 0){
@@ -30,7 +19,7 @@ public class SQLVisitor extends SQLiteBaseVisitor<Object> {
 
     @Override
     @SuppressWarnings("unchecked")
-    public Object visitSelect_core(Select_coreContext ctx) {
+    public Object visitSelect_core(SQLiteParser.Select_coreContext ctx) {
         Object result = null;
 
         String tableName = null;
@@ -55,7 +44,7 @@ public class SQLVisitor extends SQLiteBaseVisitor<Object> {
     }
 
     @Override
-    public Object visitAny_name(Any_nameContext ctx) {
+    public Object visitAny_name(SQLiteParser.Any_nameContext ctx) {
         Object result = null;
         System.out.println(ctx.toString());
         if (ctx.IDENTIFIER()!= null){
@@ -65,7 +54,7 @@ public class SQLVisitor extends SQLiteBaseVisitor<Object> {
     }
 
     @Override
-    public Object visitColumn_name(Column_nameContext ctx) {
+    public Object visitColumn_name(SQLiteParser.Column_nameContext ctx) {
         Object result = null;
         if (ctx.any_name() != null){
             result = visitAny_name(ctx.any_name());

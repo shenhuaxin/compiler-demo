@@ -1,4 +1,4 @@
-package playdb;
+package sqlparse;
 
 import java.util.List;
 

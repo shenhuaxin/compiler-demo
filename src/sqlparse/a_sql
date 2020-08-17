@@ -1,0 +1,45 @@
+
+(
+   sql_stmt
+   (
+    	factored_select_stmt
+    	(
+    		select_core
+    		select
+    		(
+    			result_column(
+    				expr(
+    					column_name(
+    						any_name
+    							order_id)))
+    	    )
+
+            from
+            (
+                join_clause (table_or_subquery(table_name(any_name orders))(
+
+                table_alias(any_name t1)))(
+                join_operator left
+                join)(
+
+                table_or_subquery(table_name (any_name members))(
+
+                table_alias(any_name t2)))(
+
+                join_constraint on(expr (expr(table_name(any_name t1)).(
+
+                column_name(any_name name)))=(
+
+                expr(table_name (any_name t2)).(
+
+                column_name(any_name name)))))
+            )
+            where
+            (
+                expr (expr(column_name(any_name cust_id)))=(
+
+                expr(literal_value 'SDYT987645'))
+            )
+        )
+    )
+   )

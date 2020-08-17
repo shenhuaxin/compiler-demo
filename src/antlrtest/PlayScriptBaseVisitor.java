@@ -1,5 +1,5 @@
 // Generated from D:/workspace/compiler-demo/src/antrltest\PlayScript.g4 by ANTLR 4.8
-package antrltest;
+package antlrtest;
 
 
 import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
